@@ -1,0 +1,94 @@
+.container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    padding: 20px 0px;
+    box-sizing: border-box;
+}
+
+.page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    scroll-snap-align: start;
+    font-family: var(--raleway);
+    font-weight: 500;
+    color: var(--primary);
+    font-size: 1.1rem;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    background-color: var(--background);
+}
+
+.wrapper {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-align: center;
+    width: 420px;
+    max-width: 100%;
+    z-index: 10;
+}
+
+
+.f1 {
+    position: absolute;
+    top: 0;
+    right: -30px;
+    width: 200px;
+    animation: slideRight 0.8s ease-out;
+}
+@keyframes slideRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+}
+.f2 {
+    position: absolute;
+    bottom: 0;
+    left: -30px;
+    width: 270px;
+    animation: slideLeft 0.8s ease-out;
+}
+@keyframes slideLeft {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+}
+
+.groom, .bride, .and {
+    font-family: var(--paris);
+    font-size: 2.3rem;
+    font-weight: 600;
+    z-index: 10;  
+}
+
+.box-doa {
+    width: 100%;
+    height: max-content;
+    border-radius: 5px;
+    border-top: 2px solid var(--primary);
+    border-bottom: 2px solid var(--primary);
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    text-align: left;
+    padding: 20px 15px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-style: italic;
+    font-size: 1rem;
+}
