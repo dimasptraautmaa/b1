@@ -43,17 +43,11 @@
     font-size: clamp(2rem, 10vw, 15rem);
     white-space: nowrap;
     text-align: center;
-    animation: showUp 2s ease-out 0.5s forwards;
-}
-
-.wrapper-card:nth-child(1) {
-    position: absolute;
-    right: 0;
-    top: 0;
+    animation: showUp 0.7s ease-out 0.5s forwards;
 }
 
 .photo-card-1, .photo-card-2, .photo-card-3 {
-    width: 300px; /* responsive, max 400px */
+    width: min(60%, 250px); /* responsive, max 400px */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,7 +62,7 @@
 }
 .photo-card-1 {
     position: absolute;
-    top: 80px;
+    top: 70px;
     left: 60px;
     transform: rotateZ(-15deg);
     animation: photo1 0.8s ease-in-out;
@@ -76,11 +70,12 @@
 }
 .photo-card-2 {
     position: absolute;
-    top: 60px;
+    top: 50px;
     left: 30px;
     transform: rotateZ(-10deg);
     animation: photo1 0.8s ease-in-out;
     transform-origin: top left;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 @keyframes photo1 {
     from {
@@ -91,7 +86,7 @@
 .photo-card-3 {
     position: absolute;
     right: 30px;
-    bottom: 10px;
+    bottom: 0;
     transform: rotateZ(10deg);
     animation: photo3 0.8s ease-in-out;
     transform-origin: top right;
@@ -121,9 +116,6 @@
 }
 
 @media (max-width: 500px) {
-    .photo-card-1, .photo-card-2, .photo-card-3 {
-        width: 270px;
-    }
     .photo-card-3 { right: 0; }
     .photo-card-2 { left: 0;}
     .photo-card-1 { left: 10px; }
