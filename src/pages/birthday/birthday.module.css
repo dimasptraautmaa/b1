@@ -1,0 +1,293 @@
+.container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    background-color: var(--background);
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    position: relative;
+    scroll-snap-align: start;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}
+
+.animate-text-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto hidden;
+}
+.animate-text-0, .animate-text-1 {
+    font-size: clamp(2rem, 11vw, 15rem);
+    color: var(--background);
+    background-color: var(--primary);
+    font-family: var(--gloock);
+    white-space: nowrap;
+}
+.animate-text-0.animateActive {
+    animation: slideTextRight 5s ease forwards;
+}
+.animate-text-1.animateActive {
+    animation: slideTextLeft 5s ease forwards;
+}
+
+@keyframes slideTextRight {
+  0% { transform: translateX(-150%); }
+  50% { transform: translateX(0); }
+  70% { transform: translateX(0); }
+  80% { transform: translateX(5%); }
+  100% { transform: translateX(150%); }
+}
+
+@keyframes slideTextLeft {
+  0% { transform: translateX(150%); }
+  50% { transform: translateX(0); }
+  70% { transform: translateX(0); }
+  80% { transform: translateX(-5%); }
+  100% { transform: translateX(-150%); }
+}
+
+.hero-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    overflow-y: hidden;
+    gap: 5px;
+    padding: 20px 20px;
+    opacity: 0;
+    transform: translateY(50px);
+    box-sizing: border-box;
+    animation: slideUp 0.8s ease-out 4.2s forwards;
+}
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.photo-card {
+    width: 250px;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    color: white;
+    text-align: center;
+    font-family: sans-serif;
+    background-color: var(--secondary);
+    padding: 15px;
+    box-sizing: border-box;
+    border: 2px solid var(--primary);
+    gap: 10px;
+    z-index: 0;
+    transform-origin: top right;
+    animation: fallCard 10s ease-in-out 4.5s forwards;
+}
+@keyframes fallCard {
+    15% {
+        transform: rotateZ(0deg);
+    }
+    20% {
+        transform: rotateZ(-10deg);
+    }
+    30% {
+        transform: rotateZ(-5deg);
+    }
+    45% {
+        transform: rotateZ(-9deg);
+    }
+    60% {
+        transform: rotateZ(-6deg);
+    }
+    75% {
+        transform: rotateZ(-7deg);
+    }
+    80% {
+        transform: rotateZ(-7deg);
+    }
+    85% {
+        transform: rotateZ(-15deg);
+    }
+    100% {
+        transform: translateY(1000%);
+    }
+}
+
+
+.photo-card-image {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* square */
+    overflow: hidden;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-card-text h3 {
+    font-family: var(--paris);
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.text {
+    font-size: 2.3rem;
+    font-family: var(--gloock);
+    color: var(--primary);
+    text-align: center;
+}
+
+/* GALLERY SECTION*/
+
+.gallery-container {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: grid;
+  margin-top: 5px;
+
+  /* grid yang kita kontrol (5 kolom x 4 baris = 20 sel) */
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+
+  /* template area: 10 slot (a..j) yang menutup seluruh grid tanpa celah */
+  grid-template-areas:
+    "a a b b c"
+    "a a d e c"
+    "f g d e h"
+    "f g i j h";
+
+  gap: 10px; /* gap antar foto */
+  align-items: stretch;
+  justify-items: stretch;
+  overflow: hidden; /* memastikan tidak ada overflow */
+  padding: 6px; /* padding internal */
+}
+
+/* basic item */
+.item {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+  opacity: 0;
+}
+
+.item.animateActive {
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* masing-masing area disesuaikan */
+.a { grid-area: a; }
+.b { grid-area: b; }
+.c { grid-area: c; }
+.d { grid-area: d; }
+.e { grid-area: e; }
+.f { grid-area: f; }
+.g { grid-area: g; }
+.h { grid-area: h; }
+.i { grid-area: i; }
+.j { grid-area: j; }
+
+/* gambar selalu mengikuti slot, bukan sebaliknya */
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* crop sesuai slot, tidak melebihi batas */
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* responsive tweak: pada layar sangat sempit kita bisa ubah rasio kolom */
+@media (max-width: 800px) {
+  .gallery-container {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas:
+      "a a b b"
+      "a a d e"
+      "f g d e"
+      "f g i j"
+      "c c c h";
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 140px;
+    gap: 4px;
+    grid-template-areas:
+      "a a"
+      "b c"
+      "d e"
+      "f g"
+      "h i"
+      "j j";
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* Pastikan .a dan .j span 2 kolom dengan tepat */
+  .a {
+    grid-area: a;
+    grid-column: 1 / 3;
+  }
+
+  .j {
+    grid-area: j;
+    grid-column: 1 / 3;
+  }
+
+  .item {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+  }
+}

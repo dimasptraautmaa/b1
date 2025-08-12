@@ -7,7 +7,7 @@ import LandingPage from "../src/pages/landingpage";
 import Register from "../src/pages/auth/register";
 import Google from "../src/pages/auth/google";
 import Login from "../src/pages/auth/login";
-import Undangan from "../src/pages/main/undangan";
+import Birthday from "../src/pages/birthday/birthday";
 
 const Router = () => {
 
@@ -96,7 +96,7 @@ const Router = () => {
       <Routing>
         <Routes>
           <Route path="/" element={<LandingPage/>}/>
-          <Route path="/undangan" element={<Undangan/>}/>
+          <Route path="/birthday" element={<Birthday/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/auth/google/callback" element={<Google/>}/>
