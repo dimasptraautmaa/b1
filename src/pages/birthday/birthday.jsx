@@ -71,7 +71,7 @@ const Birthday = () => {
                         </div>
                     </div>
                     <div style={{marginTop: '10px'}} className={`${sx["text"]}`}>HAPPY BIRTHDAY {data.nama.toUpperCase()}</div>
-                    <div style={{fontSize: '0.95rem',marginTop: '5px', lineHeight: '1.5', width: '700px', maxWidth: '100%'}} className={`${sx["text"]}`}>Selamat ulang tahun sayang, semoga tahun ini bawa banyak senyum, cerita seru, dan semua mimpi kamu pelan-pelan jadi nyata. Terima kasih udah jadi rumah terhangat buat hatiku — semoga kita terus saling jaga, saling dukung, dan saling sayang sampai nanti</div>
+                    <div style={{fontSize: '0.9rem',marginTop: '5px', lineHeight: '1.5', width: '700px', maxWidth: '100%'}} className={`${sx["text"]}`}>Selamat ulang tahun sayang, semoga tahun ini bawa banyak senyum, cerita seru, dan semua mimpi kamu pelan-pelan jadi nyata. Terima kasih udah jadi rumah terhangat buat hatiku — semoga kita terus saling jaga, saling dukung, dan saling sayang sampai nanti</div>
                 </div>
             </div>
             <div id="page2" className={`${sx["page"]}`}>

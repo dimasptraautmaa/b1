@@ -65,7 +65,7 @@ const LandingPage = () => {
                         </div>
                         <div onClick={() => {context.play(); navigate('/birthday')}} style={{display: 'flex', gap: '5px', color: '#404040', alignItems: 'center', justifyContent: 'center', cursor: 'pointer'}} className={`${sx["photo-card-text"]}`}>
                             <h3>Check this out</h3>
-                            <div className='fas fa-arrow-right fa-lg'></div>
+                            <div className={`${sx["icon"]} fas fa-arrow-right fa-lg`}></div>
                         </div>
                     </div>
                 </div>

@@ -21,6 +21,15 @@
     gap: 20px;
 }
 
+.icon {
+    animation: infslide 1s ease-in-out alternate-reverse infinite;
+}
+@keyframes infslide {
+    to {
+        transform: translateX(10px);
+    }
+}
+
 .section{
     width: 90%;
     height: 100%;
