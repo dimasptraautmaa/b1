@@ -48,7 +48,7 @@ const LandingPage = () => {
                             <img src="/img/2.jpg" className={`${sx["card-img"]}`} alt="" />
                         </div>
                         <div className={`${sx["photo-card-text"]}`}>
-                            <h3>Every Moments</h3>
+                            <h3>22-15-24</h3>
                         </div>
                     </div>
                     <div className={`${sx["photo-card-2"]}`}>
@@ -69,10 +69,6 @@ const LandingPage = () => {
                         </div>
                     </div>
                 </div>
-                {/* <div onClick={() => {context.play(); navigate('/birthday')}} className={`${sx["button"]}`}>
-                    Check this out
-                    <div className='fas fa-arrow-right fa-lg'></div>
-                </div> */}
             </div>
         </div>
     )
