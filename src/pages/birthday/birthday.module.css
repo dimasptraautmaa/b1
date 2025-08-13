@@ -89,7 +89,7 @@
 }
 
 .photo-card {
-    width: 250px;
+    width: min(50%, 250px);
     height: max-content;
     display: flex;
     flex-direction: column;
