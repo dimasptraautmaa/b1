@@ -90,6 +90,7 @@
     transform: rotateZ(-15deg);
     transform: translateZ(0deg);
     transform-origin: top left;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 @keyframes photo1 {
     100% {
@@ -123,6 +124,7 @@
     /* animation: photo3 0.8s ease-in-out 2s forwards; */
     transform-origin: top right;
     z-index: 12;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.4);
 }
 @keyframes photo3 {
     to {

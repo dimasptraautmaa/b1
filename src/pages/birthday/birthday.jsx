@@ -7,7 +7,11 @@ import Context from '../../../utils/context';
 const Birthday = () => {
 
     const context = useContext(Context);
+
     const [showLottie, setShowLottie] = React.useState(false);
+    const [isAllow, setIsAllow] = React.useState(false);
+    const [isTrue, setIsTrue] = React.useState(false);
+    const [fakeAnswer, setFakeAnswer] = React.useState("Engga!")
 
     const handleAfterAnimate = () => {
         const photoCard = document.getElementById('photo-card');
@@ -25,6 +29,24 @@ const Birthday = () => {
         observer.observe(page);
     }
 
+    const handleFakeAnswer = () => {
+        if (fakeAnswer == "Engga!") {
+            setFakeAnswer("Engga! salah lagi");   
+        }
+        else {
+            setIsTrue(true);
+        }
+    }
+
+    React.useEffect(() => {
+        if (isTrue) {
+            const content = document.getElementById("gift-content");
+            content.style.filter = "unset";
+            const page = document.getElementById("page5");
+            page?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+    }, [isTrue])
+
     React.useEffect(() => {
         const timer = setTimeout(() => {
             if (!showLottie) {
@@ -35,13 +57,14 @@ const Birthday = () => {
     }, [showLottie])
 
     React.useEffect(() => {
-        const pageId = ["page1", "page2"];
+        const pageId = ["page1", "page2", "page3"];
         const pages = pageId.map(id => document.getElementById(id));
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const texts0 = entry.target.querySelectorAll(`.${sx["animate-text-0"]}`);
                 const texts1 = entry.target.querySelectorAll(`.${sx["animate-text-1"]}`);
                 const items = entry.target.querySelectorAll(`.${sx["item"]}`);
+                const third = entry.target.querySelector(`.${sx["third-container"]}`);
 
                 if (entry.isIntersecting) {
                     // PAGE 1
@@ -53,6 +76,9 @@ const Birthday = () => {
                     el.style.animationDelay = `${i * 0.30}s`;
                     el.classList.add(sx.animateActive);
                     });
+
+                    // PAGE 3 
+                    third.classList.add(sx.animateActive)
                 } else {
                     // texts0.forEach(el => el.classList.remove(sx.animateActive));
                     // texts1.forEach(el => el.classList.remove(sx.animateActive));
@@ -114,6 +140,46 @@ const Birthday = () => {
                     <div className='fas fa-arrow-right fa-lg' style={{color: 'var(--primary)', margin: '30px 0px', transform: 'rotateZ(90deg)'}}></div>
                     <div style={{marginTop: '10px', fontSize: '0.95rem'}} className={`${sx["text"]}`}>AKU PUNYA HADIAH BUAT KAMU!</div>
                     <DotLottieReact className={`${sx["celebration1"]}`} src='/celebration.lottie' autoplay loop/>
+                </div>
+            </div>
+            {(!isTrue) && 
+            <div id='page4' className={`${sx["page"]}`}>
+                <div className={`${sx["question-container"]}`}>
+                    {(isAllow) ?
+                        <>
+                            <div style={{fontSize: '1.6rem'}} className={`${sx["text"]}`}>KAMU MASIH SAYANG GA SAMA AKU?!</div>
+                            <div className={`${sx["question-wrapper"]}`}>
+                                <div onClick={() => handleFakeAnswer()} style={{backgroundColor: 'unset', color: 'var(--primary)'}} className={`${sx["question-button"]}`}>{fakeAnswer}</div>
+                                <div onClick={() => setIsTrue(true)} className={`${sx["question-button"]}`}>Sayang dong</div>
+                            </div>
+                        </>
+                    : 
+                        <>
+                            <div style={{fontSize: '1.6rem'}} className={`${sx["text"]}`}>TAPI JAWAB PERTANYAAN AKU DULU YAA!!!</div>
+                            <div className={`${sx["question-wrapper"]}`}>
+                                <div onClick={() => setIsAllow(true)} className={`${sx["question-button"]}`}>Iya, boleh</div>
+                            </div>
+                        </>
+                    }
+                </div>
+            </div>
+            }
+            <div id='page5' className={`${sx["page"]}`}>
+                <div className={`${sx["gift-container"]}`}>
+                    <DotLottieReact className={`${sx["box"]}`} src='/box.lottie' autoplay/>
+                    <div style={{fontSize: '1.6rem'}} className={`${sx["text"]}`}>PILIH SALAH SATU HADIAH YAAA!</div>
+                    <DotLottieReact className={`${sx["celebration1"]}`} src='/celebration.lottie' autoplay/>
+                    <div id='gift-content' className={`${sx["gift-wrapper"]}`}>
+                        <div className={`${sx["gift-button"]}`}>Pajero</div>
+                        <div className={`${sx["gift-button"]}`}>Skincare</div>
+                        <div className={`${sx["gift-button"]}`}>Civic</div>
+                        <div className={`${sx["gift-button"]}`}>Umroh</div>
+                        <div className={`${sx["gift-button"]}`}>Vespa</div>
+                        <div className={`${sx["gift-button"]}`}>Aerox</div>
+                        <div className={`${sx["gift-button"]}`}>Ke Jepang</div>
+                        <div className={`${sx["gift-button"]}`}>Gacoan lv 8</div>
+                        <div className={`${sx["gift-button"]}`}>Mie Ayam</div>
+                    </div>
                 </div>
             </div>
         </div>
