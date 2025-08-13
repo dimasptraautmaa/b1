@@ -5,6 +5,8 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const Birthday = () => {
 
+    const [showLottie, setShowLottie] = React.useState(false);
+
     const handleAfterAnimate = () => {
         const photoCard = document.getElementById('photo-card');
         photoCard.style.transform = 'unset';
@@ -20,6 +22,15 @@ const Birthday = () => {
         })
         observer.observe(page);
     }
+
+    React.useEffect(() => {
+        const timer = setTimeout(() => {
+            if (!showLottie) {
+                setShowLottie(true)
+            }
+        }, 4000);
+        return () => clearTimeout(timer);
+    }, [showLottie])
 
     React.useEffect(() => {
         const pageId = ["page1", "page2"];
@@ -55,6 +66,7 @@ const Birthday = () => {
     return(
         <div className={`${sx["container"]}`}>
             <div id='page1' className={`${sx["page"]}`}>
+                {(showLottie) && <DotLottieReact className={`${sx["celebration1"]}`} src='/celebration.lottie' autoplay loop/>}
                 <div className={`${sx["animate-text-container"]}`}>
                     <div className={`${sx["animate-text-0"]}`}>HAPPY BIRTHDAY</div>
                     <div className={`${sx["animate-text-1"]}`}>HAPPY BIRTHDAY</div>
@@ -128,7 +140,7 @@ const Birthday = () => {
                     <DotLottieReact className={`${sx["cake"]}`} src='/cake.lottie' autoplay loop/>
                     <div style={{fontSize: '1.6rem'}} className={`${sx["text"]}`}>SELAMAT 21 TAHUN YA SEMOGA MAKIN CANTIK, PANJANG UMUR, SEHAT SELALU!</div>
                     <div className='fas fa-arrow-right fa-lg' style={{color: 'var(--primary)', margin: '30px 0px', transform: 'rotateZ(90deg)'}}></div>
-                    <div style={{marginTop: '10px', fontSize: '0.9rem'}} className={`${sx["text"]}`}>AKU PUNYA HADIAH BUAT KAMU!</div>
+                    <div style={{marginTop: '10px', fontSize: '0.95rem'}} className={`${sx["text"]}`}>AKU PUNYA HADIAH BUAT KAMU!</div>
                     <DotLottieReact className={`${sx["celebration1"]}`} src='/celebration.lottie' autoplay loop/>
                 </div>
             </div>
