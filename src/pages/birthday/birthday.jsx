@@ -1,10 +1,12 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import sx from "./birthday.module.css";
 import data from '../../../data/data';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import Context from '../../../utils/context';
 
 const Birthday = () => {
 
+    const context = useContext(Context);
     const [showLottie, setShowLottie] = React.useState(false);
 
     const handleAfterAnimate = () => {
@@ -65,8 +67,11 @@ const Birthday = () => {
 
     return(
         <div className={`${sx["container"]}`}>
+            <div onClick={() => {(context.isPlay) ? context.pause() : context.play()}} className={`${sx["floating-button"]}`}>
+                {(context.isPlay) ? <div className='fas fa-pause fa-lg'></div> : <div className='fas fa-play fa-lg'></div>}
+            </div>
             <div id='page1' className={`${sx["page"]}`}>
-                {(showLottie) && <DotLottieReact className={`${sx["celebration1"]}`} src='/celebration.lottie' autoplay loop/>}
+                {(showLottie) && <DotLottieReact className={`${sx["celebration1"]}`} src='/celebration.lottie' autoplay/>}
                 <div className={`${sx["animate-text-container"]}`}>
                     <div className={`${sx["animate-text-0"]}`}>HAPPY BIRTHDAY</div>
                     <div className={`${sx["animate-text-1"]}`}>HAPPY BIRTHDAY</div>
@@ -81,64 +86,31 @@ const Birthday = () => {
                 </div>
                 <div className={`${sx["hero-container"]}`}>
                     <div id='photo-card' onAnimationEnd={() => handleAfterAnimate()} className={`${sx["photo-card"]}`}>
-                        <div className={`${sx["photo-card-image"]}`}>
-                            <img src="/img/2.jpg" className={`${sx["card-img"]}`} alt="" />
-                        </div>
-                        <div className={`${sx["photo-card-text"]}`}>
-                            <h3>19-11-2003</h3>
-                        </div>
+                        <div className={`${sx["photo-card-image"]}`}><img src={data.heroFoto} className={`${sx["card-img"]}`} alt="" /></div>
+                        <div className={`${sx["photo-card-text"]}`}><h3>In Memory</h3></div>
                     </div>
-                    <div style={{marginTop: '10px'}} className={`${sx["text"]}`}>HAPPY BIRTHDAY {data.nama.toUpperCase()}</div>
-                    <div style={{fontSize: '0.9rem',marginTop: '5px', lineHeight: '1.5', width: '700px', maxWidth: '100%'}} className={`${sx["text"]}`}>Selamat ulang tahun sayang, semoga tahun ini bawa banyak senyum, cerita seru, dan semua mimpi kamu pelan-pelan jadi nyata. Terima kasih udah jadi rumah terhangat buat hatiku — semoga kita terus saling jaga, saling dukung, dan saling sayang sampai nanti</div>
+                    <div style={{marginTop: '10px'}} className={`${sx["text"]}`}>{data.heroTitle}</div>
+                    <div style={{fontSize: '0.9rem',marginTop: '5px', lineHeight: '1.5', width: '700px', maxWidth: '100%'}} className={`${sx["text"]}`}>{data.heroUcapan}</div>
                 </div>
             </div>
             <div id="page2" className={`${sx["page"]}`}>
                 <div className={`${sx["gallery-container"]}`}>
-                    <div className={`${sx["item"]} ${sx["a"]}`}>
-                        <img src="/img/1.jpg" alt="1" />
-                    </div>
-
-                    <div className={`${sx["item"]} ${sx["b"]}`}>
-                        <img src="/img/2.jpg" alt="1" />
-                    </div>
-
-                    <div className={`${sx["item"]} ${sx["c"]}`}>
-                        <img src="/img/1.jpg" alt="1" />
-                    </div>
-
-                    <div className={`${sx["item"]} ${sx["d"]}`}>
-                        <img src="/img/2.jpg" alt="1" />
-                    </div>
-
-                    <div className={`${sx["item"]} ${sx["e"]}`}>
-                        <img src="/img/1.jpg" alt="1" />
-                    </div>
-
-                    <div className={`${sx["item"]} ${sx["f"]}`}>
-                        <img src="/img/2.jpg" alt="1" />
-                    </div>
-
-                    <div className={`${sx["item"]} ${sx["g"]}`}>
-                        <img src="/img/1.jpg" alt="1" />
-                    </div>
-
-                    <div className={`${sx["item"]} ${sx["h"]}`}>
-                        <img src="/img/2.jpg" alt="1" />
-                    </div>
-
-                    <div className={`${sx["item"]} ${sx["i"]}`}>
-                        <img src="/img/1.jpg" alt="1" />
-                    </div>
-
-                    <div className={`${sx["item"]} ${sx["j"]}`}>
-                        <img src="/img/2.jpg" alt="1" />
-                    </div>
+                    <div className={`${sx["item"]} ${sx["a"]}`}><img src="/img/1.jpg" alt="1" /></div>
+                    <div className={`${sx["item"]} ${sx["b"]}`}><img src="/img/2.jpg" alt="1" /></div>
+                    <div className={`${sx["item"]} ${sx["c"]}`}><img src="/img/1.jpg" alt="1" /></div>
+                    <div className={`${sx["item"]} ${sx["d"]}`}><img src="/img/2.jpg" alt="1" /></div>
+                    <div className={`${sx["item"]} ${sx["e"]}`}><img src="/img/1.jpg" alt="1" /></div>
+                    <div className={`${sx["item"]} ${sx["f"]}`}><img src="/img/2.jpg" alt="1" /></div>
+                    <div className={`${sx["item"]} ${sx["g"]}`}><img src="/img/1.jpg" alt="1" /></div>
+                    <div className={`${sx["item"]} ${sx["h"]}`}><img src="/img/2.jpg" alt="1" /></div>
+                    <div className={`${sx["item"]} ${sx["i"]}`}><img src="/img/1.jpg" alt="1" /></div>
+                    <div className={`${sx["item"]} ${sx["j"]}`}><img src="/img/2.jpg" alt="1" /></div>
                 </div>
             </div>
             <div id='page3' className={`${sx["page"]}`}>
                 <div className={`${sx["third-container"]}`}>
                     <DotLottieReact className={`${sx["cake"]}`} src='/cake.lottie' autoplay loop/>
-                    <div style={{fontSize: '1.6rem'}} className={`${sx["text"]}`}>SELAMAT 21 TAHUN YA SEMOGA MAKIN CANTIK, PANJANG UMUR, SEHAT SELALU!</div>
+                    <div style={{fontSize: '1.6rem'}} className={`${sx["text"]}`}>{data.thirdUcapan}</div>
                     <div className='fas fa-arrow-right fa-lg' style={{color: 'var(--primary)', margin: '30px 0px', transform: 'rotateZ(90deg)'}}></div>
                     <div style={{marginTop: '10px', fontSize: '0.95rem'}} className={`${sx["text"]}`}>AKU PUNYA HADIAH BUAT KAMU!</div>
                     <DotLottieReact className={`${sx["celebration1"]}`} src='/celebration.lottie' autoplay loop/>
