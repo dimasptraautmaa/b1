@@ -103,6 +103,7 @@
     /* opacity: 0; */
     /* animation: photo3 0.8s ease-in-out 2s forwards; */
     transform-origin: top right;
+    z-index: 12;
 }
 @keyframes photo3 {
     to {
