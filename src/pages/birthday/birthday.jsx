@@ -173,12 +173,12 @@ const Birthday = () => {
                         <div className={`${sx["gift-button"]}`}>Pajero</div>
                         <div className={`${sx["gift-button"]}`}>Skincare</div>
                         <div className={`${sx["gift-button"]}`}>Civic</div>
-                        <div className={`${sx["gift-button"]}`}>Umroh</div>
-                        <div className={`${sx["gift-button"]}`}>Vespa</div>
-                        <div className={`${sx["gift-button"]}`}>Aerox</div>
-                        <div className={`${sx["gift-button"]}`}>Ke Jepang</div>
                         <div className={`${sx["gift-button"]}`}>Gacoan lv 8</div>
+                        <div className={`${sx["gift-button"]}`}>Umroh</div>
+                        <div className={`${sx["gift-button"]}`}>Ke Jepang</div>
+                        <div className={`${sx["gift-button"]}`}>Vespa</div>
                         <div className={`${sx["gift-button"]}`}>Mie Ayam</div>
+                        <div className={`${sx["gift-button"]}`}>Aerox</div>
                     </div>
                 </div>
             </div>
