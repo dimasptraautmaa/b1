@@ -78,6 +78,7 @@
   30% { transform: translateX(0); }
   50% { transform: translateX(0); color: var(--primary); }
   60%, 70% { transform: translateX(5%); color: var(--background); }
+  80% {transform: translateY(0);}
   100% { transform: translateX(150%); color: var(--background);}
 }
 
@@ -86,6 +87,7 @@
   30% { transform: translateX(0); }
   50% { transform: translateX(0); color: var(--primary); }
   60%, 70% { transform: translateX(-5%); color: var(--background); }
+  80% {transform: translateY(0);}
   100% { transform: translateX(-150%); color: var(--background);}
 }
 
@@ -230,7 +232,7 @@
 
 .item.animateActive {
     animation-name: fadeIn;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in-out;
 }
@@ -388,15 +390,14 @@
 }
 
 .gift-wrapper {
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     width: 500px;
     max-width: 100%;
-    margin-top: 30px;
+    margin-top: 15px;
     gap: 10px;
-    filter: blur(4px);
 }
 
 .gift-button {

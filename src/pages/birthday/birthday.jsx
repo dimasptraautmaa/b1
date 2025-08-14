@@ -3,15 +3,18 @@ import sx from "./birthday.module.css";
 import data from '../../../data/data';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Context from '../../../utils/context';
+import el from '../../../data/el';
 
 const Birthday = () => {
 
     const context = useContext(Context);
 
     const [showLottie, setShowLottie] = React.useState(false);
+    const [isClick, setIsClick] = React.useState(false);
     const [isAllow, setIsAllow] = React.useState(false);
     const [isTrue, setIsTrue] = React.useState(false);
     const [fakeAnswer, setFakeAnswer] = React.useState("Engga!")
+    const [isAnswer, setIsAnswer] = React.useState("");
 
     const handleAfterAnimate = () => {
         const photoCard = document.getElementById('photo-card');
@@ -29,6 +32,32 @@ const Birthday = () => {
         observer.observe(page);
     }
 
+    const handleClickGift = (id, value) => {
+        if (id == "gb4" || id == "gb8") { 
+            setIsClick(true);
+            setIsAnswer(`YEAY, NANTI KITA BELI ${value.toUpperCase()} YAAA!!!`)
+            for (let i = 1; i <= 9; i++) {
+                const el = document.getElementById(`gb${i}`);
+                if (!el) continue;
+                if (`gb${i}` === id) {
+                    el.style.display = "flex";
+                } else {
+                    el.style.display = "none";
+                }
+            }
+        }
+
+        if (id == "gb1" || id == "gb3" || id == "gb5" || id == "gb7") {
+            const button = document.getElementById(id);
+            button.style.transition = "0.5s"
+            button.style.transform = "translateX(1000px)"
+        } else if (id == "gb2" || id == "gb6" || id == "gb9") {
+            const button = document.getElementById(id);
+            button.style.transition = "0.5s"
+            button.style.transform = "translateX(-1000px)"
+        }  
+    }
+
     const handleFakeAnswer = () => {
         if (fakeAnswer == "Engga!") {
             setFakeAnswer("Engga! salah lagi");   
@@ -41,7 +70,7 @@ const Birthday = () => {
     React.useEffect(() => {
         if (isTrue) {
             const content = document.getElementById("gift-content");
-            content.style.filter = "unset";
+            content.style.display = 'flex';
             const page = document.getElementById("page5");
             page?.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
@@ -54,7 +83,15 @@ const Birthday = () => {
             }
         }, 4000);
         return () => clearTimeout(timer);
-    }, [showLottie])
+    }, [showLottie]);
+
+    // React.useEffect(() => {
+    //     if (isClick) {
+    //         setTimeout(() => {
+    //             setIsClick(false);
+    //         }, 2500);
+    //     }
+    // }, [isClick])
 
     React.useEffect(() => {
         const pageId = ["page1", "page2", "page3"];
@@ -166,19 +203,17 @@ const Birthday = () => {
             }
             <div id='page5' className={`${sx["page"]}`}>
                 <div className={`${sx["gift-container"]}`}>
-                    <DotLottieReact className={`${sx["box"]}`} src='/box.lottie' autoplay/>
-                    <div style={{fontSize: '1.6rem'}} className={`${sx["text"]}`}>PILIH SALAH SATU HADIAH YAAA!</div>
-                    <DotLottieReact className={`${sx["celebration1"]}`} src='/celebration.lottie' autoplay/>
+                    {(isClick) && <DotLottieReact id='box1' className={`${sx["box"]}`} src='/box.lottie' autoplay/>}
+                    <div style={{fontSize: '1.6rem'}} className={`${sx["text"]}`}>
+                        {(isAnswer) ? (isAnswer) : (isTrue) ? 'PILIH SALAH SATU HADIAH YAAA!' : 'JAWAB DULU PERTANYAAN YANG DIATAS DONG'}
+                    </div>
+                    {(isClick) && <DotLottieReact id='cb1' className={`${sx["celebration1"]}`} src='/celebration.lottie' autoplay loop/>}
                     <div id='gift-content' className={`${sx["gift-wrapper"]}`}>
-                        <div className={`${sx["gift-button"]}`}>Pajero</div>
-                        <div className={`${sx["gift-button"]}`}>Skincare</div>
-                        <div className={`${sx["gift-button"]}`}>Civic</div>
-                        <div className={`${sx["gift-button"]}`}>Gacoan lv 8</div>
-                        <div className={`${sx["gift-button"]}`}>Umroh</div>
-                        <div className={`${sx["gift-button"]}`}>Ke Jepang</div>
-                        <div className={`${sx["gift-button"]}`}>Vespa</div>
-                        <div className={`${sx["gift-button"]}`}>Mie Ayam</div>
-                        <div className={`${sx["gift-button"]}`}>Aerox</div>
+                        {(el.map((index, key) => {
+                            return(
+                                <div onClick={() => handleClickGift(index.id, index.value)} id={index.id} className={`${sx["gift-button"]}`} key={key}>{index.value}</div>
+                            )
+                        }))}
                     </div>
                 </div>
             </div>
